@@ -1,8 +1,8 @@
 import openpyxl as op
 from PIL import Image, ImageDraw, ImageFont
 
-workbook_alunos = op.load_workbook("C:\\Users\\Malvsa\\Desktop\\DevAprender - Youtube\\Projeto Certificado\\Utilidades informadas\\planilha_alunos.xlsx")
-sheet_alunos = workbook_alunos['Sheet1']
+workbook_alunos = op.load_workbook("caminho_arquivo_xlsx")
+sheet_alunos = workbook_alunos['aba_escolhida']
 
 for indice, linha in enumerate(sheet_alunos.iter_rows(min_row=2,max_row=20)):
     nome_curso = linha[0].value
@@ -13,11 +13,11 @@ for indice, linha in enumerate(sheet_alunos.iter_rows(min_row=2,max_row=20)):
     carga_horaria = linha[5].value
     data_emissao = linha[6].value
 
-    fonte_nome = ImageFont.truetype("C:\\Users\\Malvsa\\Desktop\\DevAprender - Youtube\\Projeto Certificado\\Utilidades informadas\\tahomabd.ttf",90)
-    fonte_geral = ImageFont.truetype("C:\\Users\\Malvsa\\Desktop\\DevAprender - Youtube\\Projeto Certificado\\Utilidades informadas\\tahoma.ttf",80)
-    fonte_data = ImageFont.truetype("C:\\Users\\Malvsa\\Desktop\\DevAprender - Youtube\\Projeto Certificado\\Utilidades informadas\\tahoma.ttf",55)
+    fonte_nome = ImageFont.truetype("caminho_fonte",90)
+    fonte_geral = ImageFont.truetype("caminho_fonte",80)
+    fonte_data = ImageFont.truetype("caminho_fonte",55)
 
-    imagem = Image.open("C:\\Users\\Malvsa\\Desktop\\DevAprender - Youtube\\Projeto Certificado\\Utilidades informadas\\certificado_padrao.jpg")
+    imagem = Image.open("caminho_fonte")
     desenhar = ImageDraw.Draw(imagem)
 
     desenhar.text((1020,833),nome_participante,fill='black',font=fonte_nome)
@@ -28,4 +28,4 @@ for indice, linha in enumerate(sheet_alunos.iter_rows(min_row=2,max_row=20)):
     desenhar.text((750,1930),data_fim,fill='black',font=fonte_data)
     desenhar.text((2220,1930),data_emissao,fill='black',font=fonte_data)
 
-    imagem.save(f'C:\\Users\\Malvsa\\Desktop\\DevAprender - Youtube\\Projeto Certificado\\Certificados PNG\\{indice} {nome_participante} - Certificado.png')
+    imagem.save(f'"caminho_salvo_arquivo" {indice} {nome_participante} - Certificado.png')
